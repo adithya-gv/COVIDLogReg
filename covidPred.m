@@ -68,17 +68,14 @@ disp("Making Predictions...")
 x = [1; (1 - iters)];
 
 pred1 = sigmoid(theta' * x) * max;
-con1 = strcat("Tomorrow, we predict: ", num2str(round(pred1)), " cases.");
-disp(con1);
+printf("Tommorow, we predict: %d cases. \n", round(pred1));
 
 x = [1; (10 - iters)];
 
 pred10 = sigmoid(theta' * x) * max;
-con10 = strcat("In 10 days, we predict: ", num2str(round(pred10)), " cases.");
-disp(con10);
+printf("In 10 days, we predict: %d cases. \n", round(pred10));
 
 x = [1; (50 - iters)];
 
 pred50 = sigmoid(theta' * x) * max;
-con50 = strcat("In 50 days, we predict: ", num2str(round(pred50)), " cases.");
-disp(con50);
+printf("In 50 days, we predict: %d cases. \n", round(pred50));
