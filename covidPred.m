@@ -1,7 +1,10 @@
 disp("Loading Data...");
 theta = [0; 0];
 load day.dat;
-X = day;
+smallX = day;
+X = zeros(size(smallX), 2);
+X(:, 1) = 1;
+X(:, 2) = smallX;
 load CACaseCount.dat;
 y = CACaseCount;
 iters = 0;
