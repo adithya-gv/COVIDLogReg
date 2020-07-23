@@ -5,8 +5,9 @@ smallX = day;
 X = zeros(size(smallX), 2);
 X(:, 1) = 1;
 X(:, 2) = smallX;
-load CACaseCount.dat;
-y = CACaseCount;
+load CaseCount.dat;
+y = CaseCount;
+today = y(size(y, 1));
 iters = 0;
 ind = size(y, 1);
 difY = zeros(ind - 1, 1);
@@ -54,8 +55,8 @@ J1 = 1;
 J2 = 0;
 status = 0;
 disp("Running Logistic Regression...");
-while ((J1 - J2) > 0.000000001),
-    if (((J1- J2) < 0.0000001) && status == 0),
+for i = 1:1000,
+    if (i > 750 && status == 0),
         disp("Computing Function...");
         status = 1;
     end;
@@ -69,6 +70,8 @@ theta;
 disp("Making Predictions...")
 
 x = [1; (1 - iters)];
+
+printf("Today, there were: %d cases. \n", today);
 
 pred1 = sigmoid(theta' * x) * max;
 printf("Tommorow, we predict: %d cases. \n", round(pred1));
