@@ -11,3 +11,7 @@ July 4, 2020: Updated the algorithm with a more accurate algorithm to estimate t
 July 12, 2020: Fixed print output bug where there would be no space between the colon and the case count.
 
 July 15, 2020: Created Scraper Tool to automatically update case counts using data from covidtracking.com and the JSON API.
+
+July 23, 2020: Generalized both the scraper tool and the algorithm to all US states. Also updated the convergence test from absolute difference to iteration count (change in predictions under 0.01%).
+
+August 4, 2020: Fixed the case collection and gathering algorithm slightly (to compensate for lack of data at times in the day). Prediction algorithm updated to include both a graph as well as yesterday's cases. Prediction algorithm has errors, currently under investigation.

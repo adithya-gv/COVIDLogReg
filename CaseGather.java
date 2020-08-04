@@ -23,7 +23,7 @@ public class CaseGather {
 		JsonReader reader = Json.createReader(new InputStreamReader(is, "UTF-8"));
         JsonArray jo = reader.readArray();
         ArrayList<Integer> cases = new ArrayList<Integer>();
-        for (int i = 0; i < upper + 1; i++) {
+        for (int i = 0; i < upper; i++) {
             JsonObject jo1 = jo.getJsonObject(i);
             int caseCount = jo1.getInt("positive");
             cases.add(caseCount);

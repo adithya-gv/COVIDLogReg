@@ -7,6 +7,7 @@ X(:, 1) = 1;
 X(:, 2) = smallX;
 load CaseCount.dat;
 y = CaseCount;
+yesterday = y(size(y, 1) - 1);
 today = y(size(y, 1));
 iters = 0;
 ind = size(y, 1);
@@ -54,34 +55,57 @@ end;
 J1 = 1;
 J2 = 0;
 status = 0;
-disp("Running Logistic Regression...");
+printf("Running Logistic Regression: ");
 for i = 1:1000,
-    if (i > 750 && status == 0),
-        disp("Computing Function...");
-        status = 1;
+    if(mod(i, 100) == 0),
+        printf("|");
     end;
     J1 = costFunction(theta, X, y, ind);
     theta = theta - (0.00003 * thetaUpdate(theta, X, y, ind));
     J2 = costFunction(theta, X, y, ind);
     difference = J1 - J2;
 end;
-theta;
+printf("|\n");
+
+plotX = [];
+plotY = [];
+printf("Graphing Cases: ");
+counter = 1;
+for i = 1:(size(day, 1) * 2),
+    if (i == round(counter * (size(day, 1) * 2) / 10)),
+        printf("|");
+        counter = counter + 1;
+    end;
+    plotInd = i - size(day, 1) - iters;
+    x = [1; plotInd];
+    pred = sigmoid(theta' * x) * max;
+    plotX = [plotX; plotInd];
+    plotY = [plotY; pred];
+end;
+printf("|\n");
+day = day .- day(size(day, 1));
+plotX = [day; plotX];
+plotY = [CaseCount; plotY];
+scatter(plotX, plotY);
 
 disp("Making Predictions...")
 
-x = [1; (1 - iters)];
+
+printf("Yesterday, there were: %d cases. \n", yesterday);
 
 printf("Today, there were: %d cases. \n", today);
+
+x = [1; (2 - iters)];
 
 pred1 = sigmoid(theta' * x) * max;
 printf("Tommorow, we predict: %d cases. \n", round(pred1));
 
-x = [1; (10 - iters)];
+x = [1; (11 - iters)];
 
 pred10 = sigmoid(theta' * x) * max;
 printf("In 10 days, we predict: %d cases. \n", round(pred10));
 
-x = [1; (50 - iters)];
+x = [1; (51 - iters)];
 
 pred50 = sigmoid(theta' * x) * max;
 printf("In 50 days, we predict: %d cases. \n", round(pred50));
