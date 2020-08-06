@@ -95,17 +95,17 @@ printf("Yesterday, there were: %d cases. \n", yesterday);
 
 printf("Today, there were: %d cases. \n", today);
 
-x = [1; (2 - iters)];
+x = [1; (1 - iters)];
 
 pred1 = sigmoid(theta' * x) * max;
 printf("Tommorow, we predict: %d cases. \n", round(pred1));
 
-x = [1; (11 - iters)];
+x = [1; (10 - iters)];
 
 pred10 = sigmoid(theta' * x) * max;
 printf("In 10 days, we predict: %d cases. \n", round(pred10));
 
-x = [1; (51 - iters)];
+x = [1; (50 - iters)];
 
 pred50 = sigmoid(theta' * x) * max;
 printf("In 50 days, we predict: %d cases. \n", round(pred50));
