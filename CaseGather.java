@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CaseGather {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, FileNotFoundException{
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         int year = calendar.get(Calendar.YEAR);
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
@@ -18,7 +18,10 @@ public class CaseGather {
         String initials = console.next();
         System.out.println("Gathering Data...");
         int upper = (dayOfYear - 197) + 133;
-        URL url = new URL("https://covidtracking.com/api/v1/states/" + initials.toLowerCase() + "/daily.json");
+        URL url = new URL("https://api.covidtracking.com/v1/us/daily.json");
+        if (!(initials.toLowerCase().equals("us"))) {
+            url = new URL("https://api.covidtracking.com/v1/states/" + initials.toLowerCase() + "/daily.json");
+        }
         InputStream is = url.openStream();
 		JsonReader reader = Json.createReader(new InputStreamReader(is, "UTF-8"));
         JsonArray jo = reader.readArray();
