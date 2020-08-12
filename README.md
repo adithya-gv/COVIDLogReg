@@ -20,3 +20,5 @@ July 23, 2020: Generalized both the scraper tool and the algorithm to all US sta
 August 4, 2020: Fixed the case collection and gathering algorithm slightly (to compensate for lack of data at times in the day). Prediction algorithm updated to include both a graph as well as yesterday's cases. Prediction algorithm has errors, currently under investigation.
 
 August 6, 2020: Fixed prediction algorithm errors.
+
+August 11, 2020: Massive algorithm update: the algorithm failed to produce accurate readings for states with case decline. In addition, cases were incorrectly predicted for anomalies. Therefore, the entire algorithm was re-written in order to fix these bugs.
